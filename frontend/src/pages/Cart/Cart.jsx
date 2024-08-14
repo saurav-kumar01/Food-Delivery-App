@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import "./Cart.css";
 import { useNavigate } from "react-router-dom";
 import { StoreContext } from "../../Context/StoreContext";
@@ -22,12 +22,12 @@ const Cart = () => {
         </div>
         <br />
         <hr />
-        {food_list.map((item, index) => {
+        {food_list.map((item) => {
           if (cartItems[item._id] > 0) {
             return (
-              <div>
+              <>
                 <div className="cart-items-title cart-items-item">
-                  <img src={url+ "/images/" +item.image} alt="" />
+                  <img src={url + "/images/" + item.image} alt="" />
                   <p>{item.name}</p>
                   <p>${item.price}</p>
                   <p>{cartItems[item._id]}</p>
@@ -37,7 +37,7 @@ const Cart = () => {
                   </p>
                 </div>
                 <hr />
-              </div>
+              </>
             );
           }
         })}
