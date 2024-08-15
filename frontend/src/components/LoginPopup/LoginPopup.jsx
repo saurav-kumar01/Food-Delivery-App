@@ -1,12 +1,11 @@
-import React, { useContext, useState } from 'react'
-import "./LoginPopup.css"
-import { assets } from '../../assets/assets';
-import { StoreContext } from '../../Context/StoreContext';
-import axios from "axios"
+import { useContext, useState } from "react";
+import "./LoginPopup.css";
+import { assets } from "../../assets/assets";
+import { StoreContext } from "../../Context/StoreContext";
+import axios from "axios";
 
-const LoginPopup = ({setShowLogin}) => {
-
-  const {url, setToken } =  useContext(StoreContext)
+const LoginPopup = ({ setShowLogin }) => {
+  const { url, setToken } = useContext(StoreContext);
 
   const [currState, setCurrState] = useState("Login");
   const [data, setData] = useState({
@@ -41,8 +40,8 @@ const LoginPopup = ({setShowLogin}) => {
   };
 
   return (
-    <div onSubmit={onLogin} className='login-popup'>
-      <form  className="login-popup-container">
+    <div onSubmit={onLogin} className="login-popup">
+      <form className="login-popup-container">
         <div className="login-popup-title">
           <h2>{currState}</h2>
           <img
@@ -102,7 +101,7 @@ const LoginPopup = ({setShowLogin}) => {
         )}
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default LoginPopup
+export default LoginPopup;

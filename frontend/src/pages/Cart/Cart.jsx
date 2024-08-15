@@ -3,7 +3,7 @@ import "./Cart.css";
 import { useNavigate } from "react-router-dom";
 import { StoreContext } from "../../Context/StoreContext";
 
-const Cart = () => {
+const Cart = ({ items }) => {
   const { cartItems, food_list, removeFromCart, getTotalCartAmount, url } =
     useContext(StoreContext);
 
@@ -22,24 +22,23 @@ const Cart = () => {
         </div>
         <br />
         <hr />
-        {food_list.map((item) => {
-          if (cartItems[item._id] > 0) {
+        {food_list.map((item, index) => {
+          if (cartItems > 0) {
             return (
-              <>
-                <div className="cart-items-title cart-items-item">
-                  <img src={url + "/images/" + item.image} alt="" />
-                  <p>{item.name}</p>
-                  <p>${item.price}</p>
-                  <p>{cartItems[item._id]}</p>
-                  <p>${item.price * cartItems[item._id]}</p>
-                  <p onClick={() => removeFromCart(item._id)} className="cross">
-                    X
-                  </p>
-                </div>
+              <div key={item._id} className="cart-items-title cart-items-item">
+                <img src={url + "/images/" + item.image} alt="" />
+                <p>{item.name}</p>
+                <p>${item.price}</p>
+                <p>{cartItems[item._id]}</p>
+                <p>${item.price * cartItems[item._id]}</p>
+                <p onClick={() => removeFromCart(item._id)} className="cross">
+                  X
+                </p>
                 <hr />
-              </>
+              </div>
             );
           }
+          return null;
         })}
       </div>
       <div className="cart-bottom">
