@@ -1,12 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./PlaceOrder.css";
 import { StoreContext } from "../../Context/StoreContext";
 import axios from "axios";
 
-
 const PlaceOrder = () => {
-  const { getTotalCartAmount, token, food_list, cartItems, url} =
+  const { getTotalCartAmount, token, food_list, cartItems, url } =
     useContext(StoreContext);
   const [data, setData] = useState({
     firstName: "",
@@ -35,19 +34,21 @@ const PlaceOrder = () => {
         orderItems.push(itemInfo);
       }
     });
+    console.log(orderItems);
     let orderData = {
       address: data,
       items: orderItems,
       amount: getTotalCartAmount() + 2,
     };
-    let response = await axios.post(url + "/api/order/place", orderData, {
+    let response = await axios.post(url+"/api/order/place", orderData, {
       headers: { token },
     });
+    console.log(response.data);
     if (response.data.success) {
       const { session_url } = response.data;
       window.location.replace(session_url);
     } else {
-      alert("Error");
+      alert("Error something wrong!");
     }
   };
 
@@ -63,7 +64,7 @@ const PlaceOrder = () => {
 
   return (
     <>
-      <form  className="place-order">
+      <form onSubmit={placeOrder} className="place-order">
         <div className="place-order-left">
           <p className="title">Delivery Information</p>
           <div className="multi-fields">
@@ -124,7 +125,7 @@ const PlaceOrder = () => {
               onChange={onChangeHandler}
               value={data.zipCode}
               type="text"
-              placeholder="Zip Code"
+              placeholder="pin Code"
               required
             />
             <input
