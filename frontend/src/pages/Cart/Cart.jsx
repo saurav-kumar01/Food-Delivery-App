@@ -3,7 +3,7 @@ import "./Cart.css";
 import { useNavigate } from "react-router-dom";
 import { StoreContext } from "../../Context/StoreContext";
 
-const Cart = ({ items }) => {
+const Cart = () => {
   const { cartItems, food_list, removeFromCart, getTotalCartAmount, url } =
     useContext(StoreContext);
 
@@ -22,7 +22,7 @@ const Cart = ({ items }) => {
         </div>
         <br />
         <hr />
-        {food_list.map((item, index) => {
+        {food_list.map((item) => {
           if (cartItems > 0) {
             return (
               <div key={item._id} className="cart-items-title cart-items-item">
