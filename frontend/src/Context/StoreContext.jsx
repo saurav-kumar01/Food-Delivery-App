@@ -1,11 +1,11 @@
-import { createContext, useEffect, useState } from "react";
 import axios from "axios";
-
+import { createContext, useEffect, useState } from "react";
+// import { food_list } from "../assets/assets";
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
-  const url = "https://food-delivery-backend-app-e8zu.onrender.com";
+  const url = "http://localhost:4000";
   const [token, setToken] = useState("");
   const [food_list, setFoodList] = useState([]);
 
@@ -26,6 +26,7 @@ const StoreContextProvider = (props) => {
 
   const removeFromCart = async (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+
     if (token) {
       await axios.post(
         url + "/api/cart/remove",
@@ -35,7 +36,7 @@ const StoreContextProvider = (props) => {
     }
   };
 
-  const getTotalCartAmount = () => {
+  const getTotalCardAmount = () => {
     let totalAmount = 0;
     for (const item in cartItems) {
       if (cartItems[item] > 0) {
@@ -51,11 +52,12 @@ const StoreContextProvider = (props) => {
     setFoodList(response.data.data);
   };
 
+  //loadCartData
   const loadCartData = async (token) => {
     const response = await axios.post(
       url + "/api/cart/get",
       {},
-      { Headers: { token } }
+      { headers: { token } }
     );
     setCartItems(response.data.cartData);
   };
@@ -65,10 +67,9 @@ const StoreContextProvider = (props) => {
       await fetchFoodList();
       if (localStorage.getItem("token")) {
         setToken(localStorage.getItem("token"));
-        // await loadCartData(localStorage.getItem("token"));
+        await loadCartData(localStorage.getItem("token"));
       }
     }
-
     loadData();
   }, []);
 
@@ -78,7 +79,7 @@ const StoreContextProvider = (props) => {
     setCartItems,
     addToCart,
     removeFromCart,
-    getTotalCartAmount,
+    getTotalCardAmount,
     url,
     token,
     setToken,
@@ -86,7 +87,6 @@ const StoreContextProvider = (props) => {
 
   return (
     <StoreContext.Provider value={contextValue}>
-      {" "}
       {props.children}
     </StoreContext.Provider>
   );
