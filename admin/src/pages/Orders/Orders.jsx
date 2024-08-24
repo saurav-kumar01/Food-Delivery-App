@@ -56,6 +56,7 @@ function Orders({ url }) {
               </p>
               <div className="order-item-address">
                 <p>{order.address.street + ","}</p>
+                {console.log(order.address.zipcode)}
                 <p>
                   {order.address.city +
                     ", " +
@@ -63,7 +64,7 @@ function Orders({ url }) {
                     ", " +
                     order.address.country +
                     ", " +
-                    order.address.zipCode}
+                    order.address.zipcode}
                 </p>
               </div>
               <p className="order-item-phone">{order.address.phone}</p>
