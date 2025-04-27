@@ -10,7 +10,7 @@
   "keywords": [
     "Vectordpi"
   ],
-  "author": "Dependra Kumar",
+  "author": "Saurav Kumar",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",

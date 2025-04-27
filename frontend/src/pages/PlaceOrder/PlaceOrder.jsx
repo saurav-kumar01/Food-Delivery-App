@@ -57,6 +57,7 @@ function PlaceOrder() {
       headers: { token },
     });
     console.log(response);
+    console.log(response.data.success);
 
     if (response.data.success) {
       const { session_url } = response.data;
