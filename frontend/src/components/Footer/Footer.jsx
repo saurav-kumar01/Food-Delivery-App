@@ -26,24 +26,24 @@ function Footer() {
         <div className="footer-content-center">
           <h2>Company</h2>
           <ul>
-            <li>Home</li>
-            <li>About us</li>
-            <li>Delivery</li>
-            <li>Privacy policy</li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/about">About us</Link></li>
+            <li><Link to="/delivery">Delivery</Link></li>
+            <li><Link to="/privacy-policy">Privacy policy</Link></li>
           </ul>
         </div>
         <div className="footer-content-right">
           <h2>Get in touch</h2>
           <ul>
-            <li>+1-212-456-7890</li>
-            <li>contact@tomato.com</li>
+            <li>+91 - 9876543210</li>
+            <li>saurabhmahur1098@gmail.com</li>
           </ul>
         </div>
       </div>
 
       <hr />
       <p className="footer-copyright">
-        Copyright 2024 (c) Tomato.com - All Right Reserved.
+        Copyright 2026 (c) Tomato.com - All Right Reserved.
       </p>
     </div>
   );
